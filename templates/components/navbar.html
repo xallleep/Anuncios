@@ -1,0 +1,32 @@
+<nav class="navbar">
+    <div class="navbar-brand">
+        <a href="/" class="logo">
+            <i class="fas fa-bolt"></i>
+            <span>AnúnciosPro</span>
+        </a>
+    </div>
+    
+    <div class="navbar-links">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/premium" class="nav-link premium-link">
+            <i class="fas fa-crown"></i> Premium
+        </a>
+        {% if session.get('user_id') %}
+            <div class="user-dropdown">
+                <button class="user-toggle">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="/account"><i class="fas fa-user"></i> Minha Conta</a>
+                    <a href="/logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                </div>
+            </div>
+        {% else %}
+            <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Entrar</a>
+        {% endif %}
+    </div>
+    
+    <button class="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+</nav>

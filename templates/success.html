@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Assinatura Confirmada | Anúncios Pro{% endblock %}
+
+{% block body_class %}success-page{% endblock %}
+
+{% block extra_head %}
+<style>
+    .success-card {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+    }
+    .success-icon {
+        font-size: 5rem;
+        color: var(--success);
+        margin-bottom: 1.5rem;
+    }
+    .whats-next {
+        text-align: left;
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: var(--card-bg);
+        border-radius: 12px;
+    }
+    .next-steps {
+        margin-top: 1rem;
+        padding-left: 1.5rem;
+    }
+    .next-steps li {
+        margin-bottom: 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="success-card glass-card">
+    <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <h1>Parabéns! Você Agora é Premium</h1>
+    <p class="subtitle">Sua assinatura foi ativada com sucesso</p>
+    
+    <div class="whats-next">
+        <h3><i class="fas fa-road"></i> Próximos Passos:</h3>
+        <ol class="next-steps">
+            <li>Acesse todos os recursos premium imediatamente</li>
+            <li>Confira seu e-mail para os detalhes da assinatura</li>
+            <li>Comece a criar anúncios ilimitados</li>
+        </ol>
+    </div>
+
+    <div class="action-buttons">
+        <a href="/" class="btn-primary">
+            <i class="fas fa-rocket"></i> Começar a Criar
+        </a>
+        <a href="/premium" class="btn-outline">
+            <i class="fas fa-gem"></i> Ver Benefícios
+        </a>
+    </div>
+</div>
+
+<div class="welcome-gift">
+    <h3><i class="fas fa-gift"></i> Presente de Boas-Vindas!</h3>
+    <p>Baixe nosso guia exclusivo "10 Estratégias para Anúncios que Vendem":</p>
+    <button class="btn-secondary">
+        <i class="fas fa-download"></i> Baixar Guia (PDF)
+    </button>
+</div>
+{% endblock %}
