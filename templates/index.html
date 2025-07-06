@@ -3,38 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 Anúncios Inteligentes</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>🔥 Gerador de Anúncios VIP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1><i class="fas fa-bolt"></i> Gerador de Anúncios</h1>
-            <p>Crie posts virais em segundos com IA</p>
-            <button id="theme-toggle"><i class="fas fa-moon"></i></button>
-        </header>
+        <div class="glass-card">
+            <header>
+                <h1><i class="fas fa-rocket"></i> Gerador de Anúncios VIP</h1>
+                <p class="subtitle">Cria posts perfeitos para Instagram com IA</p>
+                <button id="theme-toggle" aria-label="Alterar tema"><i class="fas fa-moon"></i></button>
+            </header>
 
-        <form action="/gerar" method="POST">
-            <div class="input-group">
-                <label for="texto">Descreva seu produto/serviço:</label>
-                <textarea id="texto" name="texto" required placeholder="Ex: Pizza de calabresa R$ 25 com entrega grátis"></textarea>
-            </div>
-            
-            <button type="submit" class="generate-btn">
-                <i class="fas fa-magic"></i> Gerar Anúncio
-            </button>
-        </form>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
 
-        <div class="preview">
-            <h3><i class="fas fa-eye"></i> Pré-visualização:</h3>
-            <div class="instagram-post">
-                <div class="post-content" id="live-preview">
-                    Digite algo para ver a pré-visualização...
+            <form action="/gerar" method="POST" class="generator-form">
+                <div class="input-group">
+                    <label for="texto"><i class="fas fa-pen-alt"></i> Descreva seu produto/serviço:</label>
+                    <textarea id="texto" name="texto" required placeholder="Ex: Pizza artesanal de calabresa R$25 com entrega grátis nos fins de semana..."></textarea>
+                    <div class="char-counter"><span id="char-count">0</span>/200</div>
+                </div>
+                
+                <button type="submit" class="generate-btn pulse">
+                    <i class="fas fa-magic"></i> Gerar Anúncio VIP
+                </button>
+            </form>
+
+            <div class="preview">
+                <h3><i class="fas fa-eye"></i> Pré-visualização:</h3>
+                <div class="instagram-post">
+                    <div class="post-header">
+                        <div class="user">
+                            <div class="avatar"><i class="fas fa-user"></i></div>
+                            <span>seu_usuario</span>
+                        </div>
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                    <div class="post-content" id="live-preview">
+                        ✨ Digite acima para ver a pré-visualização... ✨
+                    </div>
+                    <div class="post-actions">
+                        <i class="far fa-heart"></i>
+                        <i class="far fa-comment"></i>
+                        <i class="far fa-share-square"></i>
+                        <i class="far fa-bookmark"></i>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <footer>
+            <p>Criado com <i class="fas fa-heart"></i> e IA | © 2023</p>
+        </footer>
     </div>
 
     <script src="/static/script.js"></script>

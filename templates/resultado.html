@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Seu Anúncio VIP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card result-mode">
+            <header>
+                <h1><i class="fas fa-check-circle"></i> Anúncio Gerado!</h1>
+                <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar</a>
+            </header>
+
+            <div class="result-container">
+                <div class="original-text">
+                    <h3><i class="fas fa-quote-left"></i> Sua descrição original:</h3>
+                    <p>{{ texto_original }}</p>
+                </div>
+
+                <div class="result-content">
+                    <h3><i class="fas fa-star"></i> Anúncio otimizado:</h3>
+                    <div class="instagram-post">
+                        <div class="post-header">
+                            <div class="user">
+                                <div class="avatar"><i class="fas fa-user"></i></div>
+                                <span>seu_usuario</span>
+                            </div>
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                        <div class="post-content">
+                            {{ anuncio }}
+                        </div>
+                        <div class="post-actions">
+                            <i class="far fa-heart"></i>
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-share-square"></i>
+                            <i class="far fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="copy-btn" class="action-btn">
+                        <i class="fas fa-copy"></i> Copiar
+                    </button>
+                    <button id="new-btn" class="action-btn">
+                        <i class="fas fa-plus"></i> Novo Anúncio
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
