@@ -1,56 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Gerador de Anúncios Virais{% endblock %}
-
-{% block extra_head %}
-<style>
-    .hero {
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        color: white;
-        padding: 3rem 1rem;
-        border-radius: 16px;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-</style>
-{% endblock %}
-
 {% block content %}
 <section class="hero">
-    <div class="hero-content">
-        <h1><i class="fas fa-rocket"></i> Transforme Suas Vendas</h1>
-        <p class="subtitle">Anúncios profissionais gerados por IA em segundos</p>
-    </div>
-</section>
-
-<div class="generator-card glass-card">
-    <form id="generator-form" action="/gerar" method="POST">
+    <h1>Crie Anúncios que Vendem</h1>
+    <p>Gere posts virais para redes sociais em segundos</p>
+    
+    <form action="/gerar" method="POST" class="generator-form">
         <div class="form-group">
-            <label for="texto"><i class="fas fa-pen-fancy"></i> Descreva seu produto/serviço:</label>
-            <textarea id="texto" name="texto" required placeholder="Ex.: Confeitaria artesanal - bolos personalizados a partir de R$80..."></textarea>
-            <div class="form-footer">
-                <div class="char-counter"><span id="char-count">0</span>/200</div>
-                <button type="submit" class="btn-primary pulse">
-                    <i class="fas fa-magic"></i> Gerar Anúncio
-                </button>
-            </div>
+            <textarea name="texto" placeholder="Descreva seu produto..." required></textarea>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-magic"></i> Gerar Anúncio
+            </button>
         </div>
     </form>
+</section>
 
-    <div class="preview-container">
-        <h3><i class="fas fa-mobile-screen"></i> Pré-visualização:</h3>
-        <div class="instagram-preview">
-            <div class="instagram-post">
-                <!-- Post content will be dynamically inserted here -->
-            </div>
-        </div>
+<section class="features">
+    <div class="feature-card">
+        <i class="fas fa-bolt"></i>
+        <h3>Rápido</h3>
+        <p>Geração em menos de 10 segundos</p>
     </div>
-</div>
-
-<div class="cta-section">
-    <p>Limite de 5 anúncios grátis por dia</p>
-    <a href="/premium" class="btn-premium">
-        <i class="fas fa-crown"></i> Desbloqueie Anúncios Ilimitados
-    </a>
-</div>
+    <!-- Mais cards... -->
+</section>
 {% endblock %}

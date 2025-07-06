@@ -1,98 +1,99 @@
 {% extends "base.html" %}
 
-{% block title %}Plano Premium | Anúncios Pro{% endblock %}
-
-{% block body_class %}premium-page{% endblock %}
-
-{% block extra_head %}
-<style>
-    .pricing-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin: 3rem 0;
-    }
-    .pricing-card {
-        background: var(--card-bg);
-        border-radius: 16px;
-        padding: 2rem;
-        position: relative;
-        transition: transform 0.3s ease;
-    }
-    .pricing-card:hover {
-        transform: translateY(-10px);
-    }
-    .pricing-card.popular {
-        border: 2px solid var(--primary);
-    }
-    .popular-badge {
-        position: absolute;
-        top: -10px;
-        right: 20px;
-        background: var(--primary);
-        color: white;
-        padding: 0.25rem 1rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-</style>
-{% endblock %}
+{% block title %}Plano Premium{% endblock %}
 
 {% block content %}
-<section class="premium-header">
-    <h1><i class="fas fa-gem"></i> Assinatura Premium</h1>
-    <p class="subtitle">Acelere seus resultados com nossos recursos exclusivos</p>
+<section class="pricing-section">
+    <div class="pricing-header">
+        <h1><i class="fas fa-crown"></i> Assine o Premium</h1>
+        <p>Desbloqueie recursos exclusivos</p>
+    </div>
+
+    <div class="pricing-cards">
+        <div class="pricing-card">
+            <h3>Básico</h3>
+            <div class="price">R$19,90<span>/mês</span></div>
+            <ul class="features">
+                <li><i class="fas fa-check"></i> 50 anúncios/mês</li>
+                <li><i class="fas fa-check"></i> 5 templates</li>
+            </ul>
+            <button class="btn">Assinar</button>
+        </div>
+
+        <div class="pricing-card recommended">
+            <div class="badge">Recomendado</div>
+            <h3>Profissional</h3>
+            <div class="price">R$29,90<span>/mês</span></div>
+            <ul class="features">
+                <li><i class="fas fa-check"></i> Anúncios ilimitados</li>
+                <li><i class="fas fa-check"></i> 20+ templates</li>
+                <li><i class="fas fa-check"></i> Prioridade na geração</li>
+            </ul>
+            <form action="/premium" method="POST">
+                <button type="submit" class="btn btn-primary">Assinar Agora</button>
+            </form>
+        </div>
+    </div>
 </section>
-
-<div class="pricing-cards">
-    <div class="pricing-card">
-        <h3>Básico</h3>
-        <div class="price">R$19,90<span>/mês</span></div>
-        <ul class="features">
-            <li><i class="fas fa-check"></i> 50 anúncios/mês</li>
-            <li><i class="fas fa-check"></i> 10 templates</li>
-            <li><i class="fas fa-check"></i> Suporte por e-mail</li>
-        </ul>
-        <button class="btn-outline">Selecionar</button>
-    </div>
-
-    <div class="pricing-card popular">
-        <div class="popular-badge">MAIS POPULAR</div>
-        <h3>Profissional</h3>
-        <div class="price">R$29,90<span>/mês</span></div>
-        <ul class="features">
-            <li><i class="fas fa-check"></i> Anúncios ilimitados</li>
-            <li><i class="fas fa-check"></i> 50+ templates</li>
-            <li><i class="fas fa-check"></i> Gerador de imagens</li>
-            <li><i class="fas fa-check"></i> Suporte prioritário</li>
-        </ul>
-        <form action="/premium" method="POST">
-            <button type="submit" class="btn-primary">Assinar Agora</button>
-        </form>
-    </div>
-
-    <div class="pricing-card">
-        <h3>Empresarial</h3>
-        <div class="price">R$99,90<span>/mês</span></div>
-        <ul class="features">
-            <li><i class="fas fa-check"></i> Todos os recursos Pro</li>
-            <li><i class="fas fa-check"></i> Contas múltiplas</li>
-            <li><i class="fas fa-check"></i> Relatórios avançados</li>
-            <li><i class="fas fa-check"></i> Treinamento exclusivo</li>
-        </ul>
-        <button class="btn-outline">Para Empresas</button>
-    </div>
-</div>
-
-<div class="testimonials">
-    <h3>O que nossos clientes dizem:</h3>
-    <div class="testimonial-slider">
-        <!-- Testimonials will be loaded via JS -->
-    </div>
-</div>
 {% endblock %}
 
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/premium.js') }}"></script>
-{% endblock %}
+<style>
+.pricing-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.pricing-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.pricing-card.recommended {
+    border: 2px solid var(--primary);
+}
+
+.badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+
+.price span {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.features {
+    margin: 1.5rem 0;
+    list-style: none;
+}
+
+.features li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+</style>

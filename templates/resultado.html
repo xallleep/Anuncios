@@ -1,121 +1,73 @@
 {% extends "base.html" %}
 
-{% block title %}Seu Anúncio Pronto | Anúncios Pro{% endblock %}
-
-{% block body_class %}result-page{% endblock %}
-
-{% block extra_head %}
-<style>
-    .result-container {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    @media (min-width: 768px) {
-        .result-container {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-    .original-input {
-        background: var(--card-bg);
-        padding: 1.5rem;
-        border-radius: 12px;
-    }
-    .result-actions {
-        display: flex;
-        gap: 1rem;
-        margin-top: 2rem;
-        flex-wrap: wrap;
-    }
-    .copy-btn {
-        position: relative;
-    }
-    .copy-btn.copied::after {
-        content: "Copiado!";
-        position: absolute;
-        right: -70px;
-        background: var(--success);
-        color: white;
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
-    }
-</style>
-{% endblock %}
+{% block title %}Seu Anúncio Pronto{% endblock %}
 
 {% block content %}
-<div class="result-header">
-    <h1><i class="fas fa-check-circle"></i> Seu Anúncio Está Pronto!</h1>
-    <p class="subtitle">Otimizado para máxima conversão</p>
-</div>
-
-<div class="result-container">
-    <div class="original-input">
-        <h3><i class="fas fa-edit"></i> Sua Entrada Original:</h3>
-        <div class="original-text">{{ request.args.get('texto', '') }}</div>
+<section class="result-container">
+    <div class="result-header">
+        <h1><i class="fas fa-check-circle"></i> Seu Anúncio Está Pronto!</h1>
+        <p>Otimizado para engajamento máximo</p>
     </div>
 
-    <div class="generated-result">
-        <h3><i class="fas fa-bolt"></i> Anúncio Otimizado:</h3>
-        <div class="instagram-post result-post">
-            <div class="post-header">
-                <div class="user">
-                    <div class="avatar"><i class="fas fa-user"></i></div>
-                    <span>sua_empresa</span>
+    <div class="result-content">
+        <div class="original-input">
+            <h3><i class="fas fa-edit"></i> Seu Texto Original:</h3>
+            <p>{{ request.args.get('texto', '') }}</p>
+        </div>
+
+        <div class="generated-result">
+            <h3><i class="fas fa-rocket"></i> Versão Otimizada:</h3>
+            <div class="ad-preview">
+                <div class="ad-content">
+                    {{ anuncio }}
                 </div>
-                <i class="fas fa-ellipsis-h"></i>
+                <div class="ad-actions">
+                    <button data-copy=".ad-content" class="btn">
+                        <i class="fas fa-copy"></i> Copiar
+                    </button>
+                    <a href="/" class="btn btn-outline">
+                        <i class="fas fa-plus"></i> Novo Anúncio
+                    </a>
+                </div>
             </div>
-            <div class="post-content" id="generated-text">
-                {{ anuncio }}
-            </div>
-            <div class="post-actions">
-                <i class="far fa-heart"></i>
-                <i class="far fa-comment"></i>
-                <i class="far fa-share-square"></i>
-                <i class="far fa-bookmark"></i>
-            </div>
-        </div>
-
-        <div class="result-actions">
-            <button id="copy-btn" class="btn-primary copy-btn">
-                <i class="fas fa-copy"></i> Copiar Texto
-            </button>
-            <button id="new-btn" class="btn-outline">
-                <i class="fas fa-plus"></i> Criar Novo
-            </button>
-            {% if not is_premium %}
-            <a href="/premium" class="btn-premium">
-                <i class="fas fa-crown"></i> Sem Limites
-            </a>
-            {% endif %}
         </div>
     </div>
-</div>
-
-<div class="premium-upsell">
-    <h3><i class="fas fa-gem"></i> Quer Mais Poder?</h3>
-    <p>Assine o Premium e desbloqueie recursos exclusivos:</p>
-    <ul>
-        <li><i class="fas fa-check"></i> Gerador de imagens com IA</li>
-        <li><i class="fas fa-check"></i> +50 templates profissionais</li>
-        <li><i class="fas fa-check"></i> Agendamento automático</li>
-    </ul>
-    <a href="/premium" class="btn-premium">Ver Planos Premium</a>
-</div>
+</section>
 {% endblock %}
 
-{% block scripts %}
-<script>
-document.getElementById('copy-btn').addEventListener('click', function() {
-    const text = document.getElementById('generated-text').innerText;
-    navigator.clipboard.writeText(text).then(() => {
-        this.classList.add('copied');
-        setTimeout(() => this.classList.remove('copied'), 2000);
-    });
-});
+<style>
+.result-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
 
-document.getElementById('new-btn').addEventListener('click', () => {
-    window.location.href = '/';
-});
-</script>
-{% endblock %}
+.result-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.ad-preview {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ad-content {
+    white-space: pre-line;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.ad-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-outline {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: white;
+}
+</style>
